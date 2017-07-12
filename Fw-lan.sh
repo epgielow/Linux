@@ -2,7 +2,7 @@
 
 #######################################
 # REGRAS FW
-# BY M@5t3rd0Wn
+# by
 # epgielow@gmail.com
 #######################################
 
@@ -47,7 +47,7 @@ iptables -A DROPSSH -j DROP
 ############################################################################
 
 #Libera ssh
-iptables -A INPUT -p tcp -s 200.165.138.194  --dport 2269 -j ACCEPT
+iptables -A INPUT -p tcp -s 200.x.x.x(external ip)  --dport 2269 -j ACCEPT
 
 #Drop no ping
 iptables -A INPUT -s 0/0 -p icmp --icmp-type echo-request -j DROP

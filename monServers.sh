@@ -1,7 +1,7 @@
 ##########################################################
 # Script para verificar estado UP/DOWN dos servidores/switchs
-# do predio da barbosa lima.
-# by epg@cesar.org.br
+# 
+# by epgielow@gmail.com
 # 02/08/05
 ##########################################################
 
@@ -27,7 +27,7 @@ then
 echo " $Linha caiu em `date` " >> /scripts/scriptPath/LOG
 #echo "rodou aqui 1" > /scripts/scriptPath/log2
 ################################################
-/bin/mail -s "Atencao: $Linha esta  DOWN" suporte-mot@cesar.org.br <<END 
+/bin/mail -s "Atencao: $Linha esta  DOWN" suporte@empresa.org.br <<END 
 mensagem de alerta.
 $Linha  esta DOWN, favor verificar. 
 END
@@ -44,7 +44,7 @@ then
 echo "$Linha subiu em `date`" >> /scripts/scriptPath/LOG
 #echo "rodou aqui 2" > /scripts/scriptPath/log2
 #################################################
-/bin/mail -s "Relaxa! $Linha esta  UP" suporte-mot@cesar.org.br << END
+/bin/mail -s "Relaxa! $Linha esta  UP" suporte@empresa.org.br << END
 Mensagem de alerta.
 $Linha esta UP.
 Relaxa ! 

@@ -17,5 +17,5 @@ echo " Interface pronta ..."
 
 else
 echo " you must be root ..."
-echo " run su and script again motherfocker ..."
+echo " run su and script again ..."
 fi

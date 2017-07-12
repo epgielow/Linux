@@ -1,0 +1,73 @@
+#!/bin/sh
+#
+# nessus_scan script 17/02/2006
+#
+#                   Version 0.2
+#             Powered By Rubens
+
+
+# Seta Variaveis
+
+SEMANA="Semana_`date +%U-%Y`"
+HOST="127.0.0.1"
+PORT="1241"
+USER="rles"
+PASS="@dm1nessus"
+FILE="/usr/local/scripts/nessus/ranges/$1"
+WWW="/var/www/localhost/htdocs/nessus/"
+OUTPUT="$WWW$SEMANA/$1"
+TYPE="html_graph"
+cd $WWW
+
+# Cria Diretorio da Semana caso nao exista
+
+if [ ! -e $SEMANA ]; then
+  mkdir $SEMANA
+fi
+
+# Insere informacoes no log
+
+echo $SEMANA\_$1 >> $WWW\erros.log
+
+# Inicia o Scan e modo quiet
+
+nessus -q $HOST $PORT $USER $PASS $FILE $OUTPUT -T $TYPE -x > /dev/null 2>> $WWW\erros.log
+
+# Altera permicoes para o apache
+
+chown -R apache $SEMANA 
+
+#Procura uma lista de email, caso nao encontre sera enviado pra o suporte-mot@cesar.org.br
+
+if [ $2 ]; then
+  if [ -e /usr/local/scripts/nessus/$2 ]; then
+     ADMIN=`cat /usr/local/scripts/nessus/$2`
+  else
+      ADMIN="suporte-mot@cesar.org.br"
+  fi
+else
+   ADMIN="suporte-mot@cesar.org.br"
+fi
+
+#Envia o email.
+
+sendmail $ADMIN  << FimMail
+subject:Nessus Scan $1 $SEMANA
+from:monitor-bl@cesar.org.br
+to:$ADMIN
+
+
+`if [ -e $SEMANA/$1/index.html ]; then
+  echo -e "Encontrado:\n"
+  cat $SEMANA/$1/index.html | grep "hosts" | cut -d ' ' -f2,3,4,12,13 | cut -d '<' -f1
+  cat $SEMANA/$1/index.html | grep "holes have been" | cut -d ' ' -f3,4,5
+  cat $SEMANA/$1/index.html | grep "warnings have been" | cut -d ' ' -f3,4,5
+  cat $SEMANA/$1/index.html | grep "notes have been" | cut -d ' ' -f2,3,4
+  echo -e "\nhttp://172.27.0.255/nessus/$SEMANA/$1"
+else
+  echo -e "Um erro ocorreu!\n"
+  tail $WWW\erros.log | grep -A 10 $SEMANA\_$1
+fi`
+
+
+FimMail

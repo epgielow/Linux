@@ -1,0 +1,4 @@
+cdrecord -v -dao speed=1 dev=<device> imagem.iso'
+
+
+/dev/sr0

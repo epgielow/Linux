@@ -1,0 +1,5 @@
+para bloquear:
+arp -s 172.27.1.157 0
+
+para desbloquear:
+arp -d 172.27.1.157

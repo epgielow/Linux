@@ -3,7 +3,7 @@
 # nessus_scan script 17/02/2006
 #
 #                   Version 0.2
-#             Powered By Rubens
+#             Powered By epgielow@gmail.com
 
 
 # Seta Variaveis
@@ -11,8 +11,8 @@
 SEMANA="Semana_`date +%U-%Y`"
 HOST="127.0.0.1"
 PORT="1241"
-USER="rles"
-PASS="@dm1nessus"
+USER="abcd"
+PASS="@dmnessus"
 FILE="/usr/local/scripts/nessus/ranges/$1"
 WWW="/var/www/localhost/htdocs/nessus/"
 OUTPUT="$WWW$SEMANA/$1"
@@ -37,23 +37,23 @@ nessus -q $HOST $PORT $USER $PASS $FILE $OUTPUT -T $TYPE -x > /dev/null 2>> $WWW
 
 chown -R apache $SEMANA 
 
-#Procura uma lista de email, caso nao encontre sera enviado pra o suporte-mot@cesar.org.br
+#Procura uma lista de email, caso nao encontre sera enviado pra o suporte@empresa.org.br
 
 if [ $2 ]; then
   if [ -e /usr/local/scripts/nessus/$2 ]; then
      ADMIN=`cat /usr/local/scripts/nessus/$2`
   else
-      ADMIN="suporte-mot@cesar.org.br"
+      ADMIN="suporte@empresa.org.br"
   fi
 else
-   ADMIN="suporte-mot@cesar.org.br"
+   ADMIN="suporte@empresa.org.br"
 fi
 
 #Envia o email.
 
 sendmail $ADMIN  << FimMail
 subject:Nessus Scan $1 $SEMANA
-from:monitor-bl@cesar.org.br
+from:suporte@empresa.org.br
 to:$ADMIN
 
 

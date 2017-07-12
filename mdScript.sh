@@ -1,13 +1,11 @@
 ################################################
-# By Erik Gielow  epg@cesar.org.br
+# By epgielow@gmail.com
 # 01/04/05
 # modificado 13/05/05 v. SUSE9.0
 # modificado 21/08/2006 - refeito  v. SUSE 9.2
 # modificado 23/09/2006 - merge v. Ubuntu 6.06
 # modificado 25/04/2007 - merge v. Ubuntu 7.04
 #  add script monitor de rede.
-# feito merge com script erikScript@CESAR
-# para o notebook lenovo Masterdomme.
 ################################################
 # Modificacoes Historico:
 # 13/05/2005 V-0.1-alpha

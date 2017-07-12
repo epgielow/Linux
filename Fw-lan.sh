@@ -4,6 +4,7 @@
 # REGRAS FW
 # by
 # epgielow@gmail.com
+# comments in pt-br
 #######################################
 
 

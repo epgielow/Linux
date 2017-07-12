@@ -1,6 +1,6 @@
 ####################################################################
-# Script para monitorar a temperatura do servidor FURACAO v880
-#by epg@cesar.org.br 09/08/05
+# Script para monitorar a temperatura do servidor SUN v880
+#by epgielow@gmail.com 09/08/05
 ####################################################################
 # Para reuso, soh verificar o numero de processadores na v880,
 # e adicionar ou retirar, nesse exemplo temos 6 CPUs.
@@ -34,5 +34,5 @@ HOT=73
 
 if [ "$TEMPCPU0" -gt "$HOT" ] || [ "$TEMPCPU1" -gt "$HOT" ] || [ "$TEMPCPU2" -gt "$HOT" ] || [ "$TEMPCPU3" -gt "$HOT" ] || [ "$TEMPCPU4" -gt "$HOT" ] || [ "$TEMPCPU5" -gt "$HOT" ]
 then
-echo "subject: ATENCAO:TUFAO CPU0 $TEMPCPU0 graus CPU1 $TEMPCPU1 graus CPU2 $TEMPCPU2 graus CPU3 $TEMPCPU3 graus CPU4 $TEMPCPU4 graus CPU5 $TEMPCPU5 graus" | /usr/lib/sendmail -f ccadm@cesar.org.br ccadm@cesar.org.br
+echo "subject: ATENCAO:TUFAO CPU0 $TEMPCPU0 graus CPU1 $TEMPCPU1 graus CPU2 $TEMPCPU2 graus CPU3 $TEMPCPU3 graus CPU4 $TEMPCPU4 graus CPU5 $TEMPCPU5 graus" | /usr/lib/sendmail -f suporte@empresar.org.br suporte@empresa.org.br
 fi
